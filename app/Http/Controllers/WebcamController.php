@@ -37,6 +37,6 @@ class WebcamController extends Controller
         $file = $folderPath . $fileName;
         Storage::put($file, $image_base64);
          
-        dd('Image uploaded successfully: '.$fileName);
+        // dd('Image uploaded successfully: '.$fileName);
     }
 }

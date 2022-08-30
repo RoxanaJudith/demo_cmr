@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\VerificacionController;
+use Illuminate\Support\Facades\Route;
 
 use App\Mail\TestEmail;
 use Illuminate\Support\Facades\Mail;
@@ -25,13 +26,17 @@ Route::get('/', function () {
 
 Route::resource('products', ProductController::class);
 
+Route::resource('clientes', ClienteController::class);
+
+Route::resource('verificacion', VerificacionController::class);
+
 Route::get('send-email', function(){
     $mailData = [
         "name" => "Test NAME",
         "dob" => "12/12/1990"
     ];
 
-    Mail::to("juanito@gmail.com")->send(new TestEmail($mailData));
+    Mail::to("hello@example.com")->send(new TestEmail($mailData));
 
     dd("Mail Sent Successfully!");
 });
@@ -39,10 +44,10 @@ Route::get('send-email', function(){
 Route::get('webcam', [WebcamController::class, 'index']);
 Route::post('webcam', [WebcamController::class, 'store'])->name('webcam.capture');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::post('/verificacion', [App\Http\Controllers\VerificacionController::class, 'store'])->name('verificacion');
+

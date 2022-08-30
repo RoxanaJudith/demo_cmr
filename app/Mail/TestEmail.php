@@ -11,6 +11,7 @@ class TestEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $mailData;
     /**
      * Create a new message instance.
      *
@@ -28,6 +29,6 @@ class TestEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Test Email')->view('email.test');
+        return $this->subject('CMR: Código de Verificación')->view('email.test');
     }
 }
