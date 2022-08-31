@@ -17,7 +17,8 @@
         <h2 class="fs-title">Apertura de Cuenta en Línea</h2>
         <h3 class="fs-subtitle">Datos para verificación</h3>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" value="{{ $model->verificacion->correo_electronico }}" placeholder="name@example.com" autocomplete="off">
+            <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" autofocus
+                value="{{ $model->verificacion->correo_electronico }}" placeholder="name@example.com" autocomplete="off">
             <label for="correo_electronico">Correo electrónico</label>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -52,24 +53,25 @@
         @endif
     </fieldset>
     @endif
+    <!-- Datos Cliente -->
     @if ($model->paso2 && !$model->paso3 && !$model->paso4)
     <fieldset>
         <h2 class="fs-title">Apertura de Cuenta en Línea</h2>
         <h3 class="fs-subtitle">Datos Personales</h3>
 
-        <div class="row row-cols-3 g-3 ">
-            <div class="form-floating mb-3 col">
-                <input type="number" class="form-control" id="cedula_identidad" name="cedula_identidad" placeholder="cedula_identidad" autocomplete="off">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="form-floating mb-1 col">
+                <input type="number" class="form-control" id="cedula_identidad" value="12313" name="cedula_identidad" placeholder="cedula_identidad" autocomplete="off">
                 <label for="cedula_identidad">Cédula de Identidad</label>
             </div>
-            <div class="form-floating mb-3 col">
+            <div class="form-floating mb-1 col">
                 <input type="text" class="form-control" id="complemento" name="complemento" maxlength="2" placeholder="complemento_ci" autocomplete="off" style="text-transform:uppercase;">
                 <label for="complemento">Complemento</label>
             </div>
 
-            <div class="form-floating mb-3 col">
-                <select class="form-select" id="expedido" name="expedido" aria-label="Estado civil">
-                    <option selected></option>
+            <div class="form-floating mb-1 col">
+                <select class="form-select" id="expedido" name="expedido" aria-label="Expedido">
+                    <option selected>BN</option>
                     <option value="BN">BN</option>
                     <option value="CB">CB</option>
                     <option value="CH">CH</option>
@@ -82,31 +84,27 @@
                 </select>
                 <label for="expedido">Expedido</label>
             </div>
-        </div>
-        <div class="row row-cols-3 g-3 ">
-            <div class="form-floating mb-3 col">
-                <input type="text" class="form-control" id="nombre" name="nombre" pattern="[a-zA-Z'-'\s]*" maxlength="50" placeholder="nombre" autocomplete="off">
+            <div class="form-floating mb-1 col">
+                <input type="text" class="form-control" id="nombre" name="nombre" value="Juan" pattern="[a-zA-Z'-'\s]*" maxlength="50" placeholder="nombre" autocomplete="off">
                 <label for="nombre">Nombre</label>
             </div>
-            <div class="form-floating mb-3 col">
-                <input type="text" class="form-control alphaonly" id="apellido_paterno" name="apellido_paterno" pattern="[a-zA-Z'-'\s]*" placeholder="apellido" maxlength="50" autocomplete="off">
+            <div class="form-floating mb-1 col">
+                <input type="text" class="form-control alphaonly" id="apellido_paterno" value="Perez" name="apellido_paterno" pattern="[a-zA-Z'-'\s]*" placeholder="apellido" maxlength="50" autocomplete="off">
                 <label for="apellido_paterno">Primer Apellido</label>
             </div>
-            <div class="form-floating mb-3 col">
-                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" pattern="[a-zA-Z'-'\s]*" maxlength="50" placeholder="apellido" autocomplete="off">
+            <div class="form-floating mb-1 col">
+                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="Quiroga" pattern="[a-zA-Z'-'\s]*" maxlength="50" placeholder="apellido" autocomplete="off">
                 <label for="apellido_materno">Segundo Apellido</label>
             </div>
-        </div>
 
-        <div class="row row-cols-3 g-3 ">
-            <div class="form-floating mb-3 col">
-                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="fecha_nacimiento" autocomplete="off">
+            <div class="form-floating mb-1 col">
+                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="2020-01-01" placeholder="fecha_nacimiento" autocomplete="off">
                 <label for="fecha_nacimiento">Fecha de nacimiento</label>
             </div>
 
-            <div class="form-floating mb-3 col">
+            <div class="form-floating mb-1 col">
                 <select class="form-select" id="estado_civil" name="estado_civil" aria-label="Estado civil">
-                    <option selected></option>
+                    <option selected>Soltero</option>
                     <option value="Soltero">Soltero</option>
                     <option value="Casado">Casado</option>
                     <option value="Viudo">Viudo</option>
@@ -114,31 +112,33 @@
                 </select>
                 <label for="estado_civil">Estado Civil</label>
             </div>
-            <div class="form-floating mb-3 col">
-                <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" pattern="[a-zA-Z'-'\s]*" maxlength="255" placeholder="nacionalidad" autocomplete="off">
+            <div class="form-floating mb-1 col">
+                <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" value="BO" pattern="[a-zA-Z'-'\s]*" maxlength="255" placeholder="nacionalidad" autocomplete="off">
                 <label for="nacionalidad">Nacionalidad</label>
             </div>
-        </div>
-        <div class="row row-cols-3 g-3">
-            <div class="form-floating mb-3 col">
+
+            <div class="form-floating mb-1 col">
                 <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" maxlength="50" value="{{ $model->cliente->correo_electronico }}" placeholder="name@example.com" autocomplete="off">
                 <label for="correo_electronico">Correo electrónico</label>
             </div>
-            <div class="form-floating mb-3 col">
-                <input type="number" class="form-control" id="celular" name="celular" min="60000000" max="79999999" length="" placeholder="celular" autocomplete="off">
+            <div class="form-floating mb-1 col">
+                <input type="number" class="form-control" id="celular" name="celular" min="60000000" max="79999999" value="78787878" length="" placeholder="celular" autocomplete="off">
                 <label for="celular">Celular</label>
             </div>
 
-            <div class="form-floating mb-3 col">
+            <div class="form-floating mb-1 col">
                 <select class="form-select" id="genero" name="genero" aria-label="Estado civil">
-                    <option selected></option>
+                    <option selected>Femenino</option>
                     <option value="Femenino">Femenino</option>
                     <option value="Masculino">Masculino</option>
                 </select>
                 <label for="genero">Género</label>
             </div>
+        </div>
+
+        <div class="row row-cols-1 g-1 mt-2">
             <div class="form-floating mb-3 col">
-                <input type="text" class="form-control" id="direccion" name="direccion" maxlength="250" placeholder="Dirección" autocomplete="off">
+                <input type="text" class="form-control" id="direccion" name="direccion" value="Dir" maxlength="250" placeholder="Dirección" autocomplete="off">
                 <label for="direccion">Dirección</label>
             </div>
         </div>
@@ -160,6 +160,7 @@
         <h3 class="fs-subtitle">Para tomarte la selfie toma en cuenta que debes hacerlo sin lentes, gorra u otros objetos que eviten ver claramente tu rostro. </h3>
 
         <div class="row">
+            <input type="hidden" name="idCliente" value="{{ $model->cliente->id }}">
             <div class="col-md-6">
                 <div id="my_camera"></div>
                 <br />
@@ -171,8 +172,8 @@
             </div>
             <br>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" name="enviarSelfie" class="btn btn-success next">
-                    <i class="fas fa-paper-plane"></i> Enviar y Continuar
+                <button type="submit" name="guardarSelfie" class="btn btn-success next">
+                    <i class="fas fa-paper-plane"></i> Guardar Selfie y Continuar
                 </button>
             </div>
         </div>
@@ -203,6 +204,7 @@
         <h4 class="fs-subtitle">Para tomar la fotografía de la cédula de identidad debes asegurarte de encuadrarla lo mejor posible y que los datos sean nítidos para su lectura. </h3>
 
             <div class="row">
+                <input type="hidden" name="idCliente" value="{{ $model->cliente->id }}">
                 <div class="col-md-6">
                     <div id="my_camera"></div>
                     <br />
@@ -214,8 +216,8 @@
                 </div>
                 <br>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" name="enviarCiAnverso" class="btn btn-success next">
-                        <i class="fas fa-paper-plane"></i> Enviar y Continuar
+                    <button type="submit" name="guardarCiAnverso" class="btn btn-success next">
+                        <i class="fas fa-paper-plane"></i> Guardar Anverso de CI y Continuar
                     </button>
                 </div>
             </div>
@@ -246,6 +248,7 @@
         <h4 class="fs-subtitle">Para tomar la fotografía de la cédula de identidad debes asegurarte de encuadrarla lo mejor posible y que los datos sean nítidos para su lectura. </h3>
 
             <div class="row">
+                <input type="hidden" name="idCliente" value="{{ $model->cliente->id }}">
                 <div class="col-md-6">
                     <div id="my_camera"></div>
                     <br />
@@ -257,8 +260,8 @@
                 </div>
                 <br>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" name="enviarCiReverso" class="btn btn-success next">
-                        <i class="fas fa-paper-plane"></i> Enviar y Finalizar
+                    <button type="submit" name="guardarCiReverso" class="btn btn-success next">
+                        <i class="fas fa-paper-plane"></i> Guardar Reverso de CI y Finalizar
                     </button>
                 </div>
             </div>

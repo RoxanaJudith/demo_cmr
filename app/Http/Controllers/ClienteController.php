@@ -36,35 +36,36 @@ class ClienteController extends Controller
         if (session('idVerificacion')) {
             $model->verificacion->id = session('idVerificacion');
             $model->verificacion->correo_electronico = session('correoElectronico');
-        } else if (session('idValidado')) {
+        } else if (session('idValidado') || true) { // Paso 2: Ingreso a Datos Personales
             $model->cliente = new Cliente;
             $model->cliente->correo_electronico = session('correoElectronico');
             $model->paso2 = 'active';
-        }
-        else if (session('datosPersonales')) {
+        } else if (session('clienteGuardado')) { // Ingreso a Foto Selfie
             $model->cliente = new Cliente;
             $model->cliente->id = session('idCliente');
             $model->paso2 = 'active';
             $model->paso3 = 'active';
-        }
-        else if (session('selfieCliente')) {
+        } else if (session('selfieClienteGuardada')) {
+            $model->cliente = new Cliente;
+            $model->cliente->id = session('idCliente');
             $model->paso2 = 'active';
             $model->paso3 = 'active';
             $model->paso4 = 'active';
-        }
-        else if (session('anversoCi')) {
+        } else if (session('anversoCiGuardado')) {
+            $model->cliente = new Cliente;
+            $model->cliente->id = session('idCliente');
             $model->paso2 = 'active';
             $model->paso3 = 'active';
             $model->paso4 = 'active';
             $model->paso5 = 'active';
-        }
-        else if (session('reversoCi')) {
+        } else if (session('reversoCiGuardado')) {
+            $model->cliente = new Cliente;
+            $model->cliente->id = session('idCliente');
             $model->paso2 = 'active';
             $model->paso3 = 'active';
             $model->paso4 = 'active';
             $model->paso5 = 'active';
             $model->paso6 = 'active';
-
         }
         return view('clientes.create', compact('model'));
     }
@@ -99,7 +100,7 @@ class ClienteController extends Controller
             }
         }
         if (isset($_POST['guardarCliente'])) {
-            
+
             $request->validate([
                 'cedula_identidad' => 'required',
             ]);
@@ -111,43 +112,47 @@ class ClienteController extends Controller
 
             return redirect()->route('clientes.create')
                 ->with('idCliente', $nuevoCliente->id)
-                ->with('datosPersonales', true);
+                ->with('clienteGuardado', true);
         }
-        if (isset($_POST['enviarSelfie'])) {
+        if (isset($_POST['guardarSelfie'])) {
             // dd($request);
             $selfieCliente = (new WebcamController)->store($request);
 
-            // $cliente = Cliente::find($request->id);
-            // $cliente->foto_selfie = $selfieCliente;
-            // $cliente->save();
+            $cliente = Cliente::find($request->idCliente);
+            $cliente->foto_selfie = $selfieCliente;
+            $cliente->save();
 
             return redirect()->route('clientes.create')
-                ->with('selfieCliente', true);
+                ->with('idCliente', $request->idCliente)
+                ->with('selfieClienteGuardada', true);
         }
-        if (isset($_POST['enviarCiAnverso'])) {
+        if (isset($_POST['guardarCiAnverso'])) {
             $anversoCi = (new WebcamController)->store($request);
 
-            // $cliente = Cliente::find($request->id);
-            // $cliente->foto_ci_anverso = $anversoCi;
-            // $cliente->save();
+            $cliente = Cliente::find($request->idCliente);
+            $cliente->foto_ci_anverso = $anversoCi;
+            $cliente->save();
 
             return redirect()->route('clientes.create')
-                ->with('anversoCi', true);
+                ->with('idCliente', $request->idCliente)
+                ->with('anversoCiGuardado', true);
         }
-        if (isset($_POST['enviarCiReverso'])) {
+        if (isset($_POST['guardarCiReverso'])) {
             $reversoCi = (new WebcamController)->store($request);
 
-            // $cliente = Cliente::find($request->id);
-            // $cliente->foto_ci_reverso = $reversoCi;
-            // $cliente->save();
-            
-            $cuentaCliente = (new CuentaController)->store($request->id);
+            $cliente = Cliente::find($request->idCliente);
+            $cliente->foto_ci_reverso = $reversoCi;
+            $cliente->finalizado = true;
+            $cliente->save();
+
+            $cuentaCliente = (new CuentaController)->store($request->idCliente);
             // Modal cuenta creada correo con datos fue eviado
 
             return redirect()->route('clientes.create')
-                ->with('reversoCi', true);
+                ->with('idCliente', $request->idCliente)
+                ->with('reversoCiGuardado', true);
         }
-        
+
 
 
         // return redirect()->route('clientes.index')
