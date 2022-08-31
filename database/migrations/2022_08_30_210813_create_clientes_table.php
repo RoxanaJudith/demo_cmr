@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
             $table->integer('cedula_identidad');
-            $table->string('complemento', 2);
+            $table->string('complemento', 2)->nullable(true);
             $table->string('expedido', 2);
-            $table->string('nombre', 100);
+            $table->string('nombre', 50);
             $table->string('apellido_paterno', 50);
             $table->string('apellido_materno', 50);
             $table->date('fecha_nacimiento');
@@ -28,9 +28,9 @@ return new class extends Migration
             $table->string('direccion', 250);
             $table->string('correo_electronico', 50);
             $table->integer('celular');
-            $table->string('foto_selfie');
-            $table->string('foto_ci_anverso');
-            $table->string('foto_ci_reverso');
+            $table->string('foto_selfie')->nullable(true);
+            $table->string('foto_ci_anverso')->nullable(true);
+            $table->string('foto_ci_reverso')->nullable(true);
             $table->timestamps();
         });
     }

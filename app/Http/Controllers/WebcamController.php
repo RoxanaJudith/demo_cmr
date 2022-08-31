@@ -1,7 +1,8 @@
 <?php
      
 namespace App\Http\Controllers;
-     
+
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Storage;
    
@@ -36,6 +37,8 @@ class WebcamController extends Controller
          
         $file = $folderPath . $fileName;
         Storage::put($file, $image_base64);
+
+        return $file;
          
         // dd('Image uploaded successfully: '.$fileName);
     }
