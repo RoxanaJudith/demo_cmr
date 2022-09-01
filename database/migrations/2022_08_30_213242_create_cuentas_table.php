@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id();
             $table->integer('clientes_id')->unsigned();
-            $table->integer('numero_cuenta');
+            $table->string('numero', 14);
+            $table->string('tipo', 20);
             $table->timestamps();
             $table->foreign('clientes_id')->references('id')->on('clientes')
                 ->onDelete('cascade');

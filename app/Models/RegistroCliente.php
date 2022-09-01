@@ -16,5 +16,4 @@ class RegistroCliente extends Model
     protected $paso3;
     protected $paso4;
     protected $paso5;
-    protected $paso6;
 }

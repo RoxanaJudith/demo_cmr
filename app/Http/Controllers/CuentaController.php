@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\TestEmail;
+use App\Mail\CuentaEmail;
+use App\Models\Cliente;
 use App\Models\Cuenta;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Ramsey\Uuid\Type\Integer;
 
 class CuentaController extends Controller
 {
@@ -39,15 +38,25 @@ class CuentaController extends Controller
      */
     public function store(Request $request)
     {
-        
         $code_random_number = strval(random_int(462000000000, 462999999999));
 
         $cuentaCliente = new Cuenta;
-        $cuentaCliente->clientes_id = $request->id;
-        $cuentaCliente->numero_cuenta = $code_random_number;
+        $cuentaCliente->clientes_id = $request->idCliente;
+        $cuentaCliente->numero = $code_random_number;
+        $cuentaCliente->tipo = 'Caja de Ahorros';
 
-        $cuentaCliente->save();
+        $cuentaCreada = $cuentaCliente->save();
+        $cliente = Cliente::find($request->idCliente);
+        $mailData = [
+            "correo_electronico" => $cliente->correo_electronico,
+            "nombre_cliente" => $cliente->nombre,
+            "apellido_paterno" => $cliente->apellido_paterno,
+            "apellido_materno" => $cliente->apellido_materno,
+            "cedula_identidad" => $cliente->cedula_identidad,
+            "numero_cuenta" => $cuentaCliente->numero
+        ];
 
+        Mail::to($cliente->correo_electronico)->send(new CuentaEmail($mailData));
         return true;
     }
 

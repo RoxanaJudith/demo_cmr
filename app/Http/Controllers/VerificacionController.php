@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\TestEmail;
+use App\Mail\CodigoEmail;
 use App\Models\Verificacion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Ramsey\Uuid\Type\Integer;
 
 class VerificacionController extends Controller
 {
@@ -61,7 +60,7 @@ class VerificacionController extends Controller
 
         ];
 
-        //Mail::to($verificacion->correo_electronico)->send(new TestEmail($mailData));
+        Mail::to($verificacion->correo_electronico)->send(new CodigoEmail($mailData));
 
         return $verificacion;
     }

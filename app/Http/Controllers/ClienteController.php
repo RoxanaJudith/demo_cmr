@@ -36,7 +36,7 @@ class ClienteController extends Controller
         if (session('idVerificacion')) {
             $model->verificacion->id = session('idVerificacion');
             $model->verificacion->correo_electronico = session('correoElectronico');
-        } else if (session('idValidado') || true) { // Paso 2: Ingreso a Datos Personales
+        } else if (session('idValidado')) { // Paso 2: Ingreso a Datos Personales
             $model->cliente = new Cliente;
             $model->cliente->correo_electronico = session('correoElectronico');
             $model->paso2 = 'active';
@@ -45,27 +45,26 @@ class ClienteController extends Controller
             $model->cliente->id = session('idCliente');
             $model->paso2 = 'active';
             $model->paso3 = 'active';
-        } else if (session('selfieClienteGuardada')) {
+        } else if (session('selfieClienteGuardada')) { // Ingreso a Foto CI Anverso
             $model->cliente = new Cliente;
             $model->cliente->id = session('idCliente');
             $model->paso2 = 'active';
             $model->paso3 = 'active';
             $model->paso4 = 'active';
-        } else if (session('anversoCiGuardado')) {
-            $model->cliente = new Cliente;
-            $model->cliente->id = session('idCliente');
-            $model->paso2 = 'active';
-            $model->paso3 = 'active';
-            $model->paso4 = 'active';
-            $model->paso5 = 'active';
-        } else if (session('reversoCiGuardado')) {
+        } else if (session('anversoCiGuardado')) { // Ingreso a Foto CI Reverso
             $model->cliente = new Cliente;
             $model->cliente->id = session('idCliente');
             $model->paso2 = 'active';
             $model->paso3 = 'active';
             $model->paso4 = 'active';
             $model->paso5 = 'active';
-            $model->paso6 = 'active';
+        } else if (session('reversoCiGuardado')) { // Cuenta Creada
+            $model->cliente = new Cliente;
+            $model->cliente->id = session('idCliente');
+            $model->paso2 = 'active';
+            $model->paso3 = 'active';
+            $model->paso4 = 'active';
+            $model->paso5 = 'active';
         }
         return view('clientes.create', compact('model'));
     }
@@ -145,18 +144,12 @@ class ClienteController extends Controller
             $cliente->finalizado = true;
             $cliente->save();
 
-            $cuentaCliente = (new CuentaController)->store($request->idCliente);
-            // Modal cuenta creada correo con datos fue eviado
+            $cuentaCliente = (new CuentaController)->store($request);
 
             return redirect()->route('clientes.create')
                 ->with('idCliente', $request->idCliente)
                 ->with('reversoCiGuardado', true);
         }
-
-
-
-        // return redirect()->route('clientes.index')
-        //                 ->with('success','Cliente creado');
     }
 
     /**

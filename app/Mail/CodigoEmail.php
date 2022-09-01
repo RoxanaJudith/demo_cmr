@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TestEmail extends Mailable
+class CodigoEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,6 +29,6 @@ class TestEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('CMR: Código de Verificación')->view('email.test');
+        return $this->subject('CMR: Código de Verificación')->view('email.codigo');
     }
 }
