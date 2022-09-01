@@ -72,7 +72,7 @@ Clone el repositorio e ingresa a la carpeta del proyecto.
 ```
 git clone https://github.com/RoxanaJudith/demo_cmr.git
 cd demo_cmr
-
+```
 Realice la instalación mediante composer y crear el archivo .env copiando el contenido de .env.example y modifique el valor de la contraseña de acceso a la base de datos DB_PASSWORD con su valor correspondiente
 
 ```
@@ -81,7 +81,6 @@ cp .env.example .env
 ```
 Cree la base de datos dbcmr en su postgresql
 
-```
 En su archivo php.ini asegurese de que se encuentren descomentadas las lineas extension=pdo_pgsql y extension=pgsql quitando el punto y coma (;) que los precede
 
 ```
