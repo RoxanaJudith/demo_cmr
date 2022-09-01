@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\Cuenta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+// use PDF;
 
 class CuentaController extends Controller
 {
@@ -47,7 +48,7 @@ class CuentaController extends Controller
 
         $cuentaCreada = $cuentaCliente->save();
         $cliente = Cliente::find($request->idCliente);
-        $mailData = [
+        $data = [
             "correo_electronico" => $cliente->correo_electronico,
             "nombre_cliente" => $cliente->nombre,
             "apellido_paterno" => $cliente->apellido_paterno,
@@ -56,7 +57,10 @@ class CuentaController extends Controller
             "numero_cuenta" => $cuentaCliente->numero
         ];
 
-        Mail::to($cliente->correo_electronico)->send(new CuentaEmail($mailData));
+        // $pdf = PDF::loadView('email.cuenta', $data);
+
+        Mail::to($cliente->correo_electronico)
+            ->send(new CuentaEmail($data));
         return true;
     }
 
