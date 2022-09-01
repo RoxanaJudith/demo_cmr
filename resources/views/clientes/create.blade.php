@@ -60,7 +60,7 @@
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <div class="form-floating mb-1 col">
-        <input type="number" class="form-control" id="cedula_identidad" value="12313" name="cedula_identidad" placeholder="cedula_identidad" autocomplete="off">
+        <input type="number" class="form-control" id="cedula_identidad" name="cedula_identidad" placeholder="cedula_identidad" autocomplete="off">
         <label for="cedula_identidad">Cédula de Identidad</label>
       </div>
       <div class="form-floating mb-1 col">
@@ -70,7 +70,7 @@
 
       <div class="form-floating mb-1 col">
         <select class="form-select" id="expedido" name="expedido" aria-label="Expedido">
-          <option selected>BN</option>
+          <option selected></option>
           <option value="BN">BN</option>
           <option value="CB">CB</option>
           <option value="CH">CH</option>
@@ -84,15 +84,15 @@
         <label for="expedido">Expedido</label>
       </div>
       <div class="form-floating mb-1 col">
-        <input type="text" class="form-control" id="nombre" name="nombre" value="Juan" pattern="[a-zA-Z'-'\s]*" maxlength="50" placeholder="nombre" autocomplete="off">
+        <input type="text" class="form-control" id="nombre" name="nombre" pattern="[a-zA-Z'-'\s]*" maxlength="50" placeholder="nombre" autocomplete="off">
         <label for="nombre">Nombre</label>
       </div>
       <div class="form-floating mb-1 col">
-        <input type="text" class="form-control alphaonly" id="apellido_paterno" value="Perez" name="apellido_paterno" pattern="[a-zA-Z'-'\s]*" placeholder="apellido" maxlength="50" autocomplete="off">
+        <input type="text" class="form-control alphaonly" id="apellido_paterno" name="apellido_paterno" pattern="[a-zA-Z'-'\s]*" placeholder="apellido" maxlength="50" autocomplete="off">
         <label for="apellido_paterno">Primer Apellido</label>
       </div>
       <div class="form-floating mb-1 col">
-        <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="Quiroga" pattern="[a-zA-Z'-'\s]*" maxlength="50" placeholder="apellido" autocomplete="off">
+        <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" pattern="[a-zA-Z'-'\s]*" maxlength="50" placeholder="apellido" autocomplete="off">
         <label for="apellido_materno">Segundo Apellido</label>
       </div>
 
@@ -103,7 +103,7 @@
 
       <div class="form-floating mb-1 col">
         <select class="form-select" id="estado_civil" name="estado_civil" aria-label="Estado civil">
-          <option selected>Soltero</option>
+          <option selected></option>
           <option value="Soltero">Soltero</option>
           <option value="Casado">Casado</option>
           <option value="Viudo">Viudo</option>
@@ -112,7 +112,7 @@
         <label for="estado_civil">Estado Civil</label>
       </div>
       <div class="form-floating mb-1 col">
-        <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" value="BO" pattern="[a-zA-Z'-'\s]*" maxlength="255" placeholder="nacionalidad" autocomplete="off">
+        <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" pattern="[a-zA-Z'-'\s]*" maxlength="255" placeholder="nacionalidad" autocomplete="off">
         <label for="nacionalidad">Nacionalidad</label>
       </div>
 
@@ -121,13 +121,13 @@
         <label for="correo_electronico">Correo electrónico</label>
       </div>
       <div class="form-floating mb-1 col">
-        <input type="number" class="form-control" id="celular" name="celular" min="60000000" max="79999999" value="78787878" length="" placeholder="celular" autocomplete="off">
+        <input type="number" class="form-control" id="celular" name="celular" min="60000000" max="79999999" placeholder="celular" autocomplete="off">
         <label for="celular">Celular</label>
       </div>
 
       <div class="form-floating mb-1 col">
         <select class="form-select" id="genero" name="genero" aria-label="Estado civil">
-          <option selected>Femenino</option>
+          <option selected></option>
           <option value="Femenino">Femenino</option>
           <option value="Masculino">Masculino</option>
         </select>
@@ -137,7 +137,7 @@
 
     <div class="row row-cols-1 g-1 mt-2">
       <div class="form-floating mb-3 col">
-        <input type="text" class="form-control" id="direccion" name="direccion" value="Dir" maxlength="250" placeholder="Dirección" autocomplete="off">
+        <input type="text" class="form-control" id="direccion" name="direccion" maxlength="250" placeholder="Dirección" autocomplete="off">
         <label for="direccion">Dirección</label>
       </div>
     </div>

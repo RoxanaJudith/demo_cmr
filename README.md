@@ -62,3 +62,46 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### Como correr la App demo_cmr
+
+Asegúrese de tener PHP igual o superior a 8.1 y Composer igual o superior a 2.4.2 instalados en su computadora.
+
+Clone el repositorio e ingresa a la carpeta del proyecto.
+
+```
+git clone https://github.com/RoxanaJudith/demo_cmr.git
+cd demo_cmr
+
+Realice la instalación mediante composer y crear el archivo .env copiando el contenido de .env.example y modifique el valor de la contraseña de acceso a la base de datos DB_PASSWORD con su valor correspondiente
+
+```
+composer install
+cp .env.example .env
+```
+Cree la base de datos dbcmr en su postgresql
+
+```
+En su archivo php.ini asegurese de que se encuentren descomentadas las lineas extension=pdo_pgsql y extension=pgsql quitando el punto y coma (;) que los precede
+
+```
+extension=pdo_pgsql
+extension=pgsql
+
+```
+Haga correr las migraciones
+
+```
+php artisan migrate
+```
+
+Levante el web server
+
+```
+php artisan serve
+```
+Ya está listo para utilizarlo, ingrese a la url
+
+```
+http://127.0.0.1:8000/
+```

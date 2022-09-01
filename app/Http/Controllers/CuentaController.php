@@ -48,7 +48,7 @@ class CuentaController extends Controller
 
         $cuentaCreada = $cuentaCliente->save();
         $cliente = Cliente::find($request->idCliente);
-        $data = [
+        $mailData = [
             "correo_electronico" => $cliente->correo_electronico,
             "nombre_cliente" => $cliente->nombre,
             "apellido_paterno" => $cliente->apellido_paterno,
@@ -60,7 +60,7 @@ class CuentaController extends Controller
         // $pdf = PDF::loadView('email.cuenta', $data);
 
         Mail::to($cliente->correo_electronico)
-            ->send(new CuentaEmail($data));
+            ->send(new CuentaEmail($mailData));
         return true;
     }
 
